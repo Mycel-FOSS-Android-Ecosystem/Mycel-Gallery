@@ -16,20 +16,25 @@ class MoebiusModels {
 
   static const String _base = "https://entedevassets.priem.dev/";
 
-  static const String unetUrl = "${_base}unet_fp16.onnx";
+  // The U-Net is the einsum-rewritten variant (`unet_fp16_rw.onnx`): its 105
+  // Einsum nodes are decomposed offline into Transpose/Reshape/MatMul, which
+  // ONNX Runtime executes with fast multithreaded GEMM kernels instead of its
+  // slow, mostly single-threaded Einsum kernel (~1.5x faster per denoise step
+  // on a Pixel 8; numerically exact, max|delta| 1.8e-6 at fp32).
+  static const String unetUrl = "${_base}unet_fp16_rw.onnx";
   static const String vaeEncoderUrl = "${_base}vae_encoder_fp16.onnx";
   static const String vaeDecoderUrl = "${_base}vae_decoder_fp16.onnx";
 
   // SHA-256 of the fp16 graphs.
   static const String _unetSha =
-      "f0995182c30d92ef32c54f048b0906c26534d65def9aeffd01521da8280bdb90";
+      "b2a99db24a297b3db251c529da7a526dc55097fac35455be6f6a72f32eb0d637";
   static const String _vaeEncoderSha =
       "c4a8c399498bea2c5817e1701f5a59e312a5be0a09139157f7934743eecb98e8";
   static const String _vaeDecoderSha =
       "2c51ab793f17a91246ce97c0f553751355b9de9b896051739d72762ab1c9c0fd";
 
   /// Approximate combined on-disk size, used for the first-run download prompt.
-  static const int approxTotalBytes = 459820322 + 101260614 + 70585594;
+  static const int approxTotalBytes = 460093716 + 101260614 + 70585594;
 
   /// All three model URLs, useful for filtering [RemoteAssetsService.progressStream].
   static const List<String> urls = [unetUrl, vaeEncoderUrl, vaeDecoderUrl];
