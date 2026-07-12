@@ -1,34 +1,21 @@
 [workspace]
 resolver = "2"
 members = [
-    "apps/cli",
     "apps/codegen",
-    "apps/ensu/src-tauri",
     "bindings/frb/ente-rust",
     "bindings/frb/photos",
-    "bindings/uniffi/cast",
-    "bindings/uniffi/ensu",
     "bindings/wasm/ente-wasm",
-    "bindings/wasm/core",
-    "crates/accounts",
     "crates/contacts",
     "crates/core",
-    "crates/ensu",
     "crates/image",
     "crates/photos",
-    "crates/test-support",
-    "e2e",
 ]
 
 [workspace.dependencies]
-ente-ensu = { path = "crates/ensu" }
-ente-accounts = { path = "crates/accounts" }
 ente-contacts = { path = "crates/contacts" }
 ente-core = { path = "crates/core" }
 ente-image = { path = "crates/image" }
 ente-photos = { path = "crates/photos" }
-ente-rs = { path = "apps/cli" }
-ente-test-support = { path = "crates/test-support" }
 serde = { version = "1.0.228", features = ["derive"] }
 thiserror = "2.0.18"
 uniffi = { version = "0.31.0" }
