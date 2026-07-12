@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src=".github/assets/ente-rocketship.png" width="400"/>
+<img src=".github/assets/mycel-logo.png" width="400"/>
 
 Fully open source end-to-end encrypted photos, authenticators and more.
 
